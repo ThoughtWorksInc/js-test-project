@@ -1,4 +1,4 @@
-Nearly empty javascript project with a failing test!
+Nearly empty javascript project with a passing and a failing test!
 ===
 
 To install the required modules:
