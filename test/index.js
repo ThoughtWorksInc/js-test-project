@@ -87,7 +87,7 @@ let diariasArray = datesArray.map((date)=> {
 
         return diaria;
     })
-    
+     
 });
 
 
