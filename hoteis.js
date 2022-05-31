@@ -1,4 +1,4 @@
-export const hoteis = [{
+exports.hoteis = [{
     name: "Parque das flores",
     classificacao: 3,
     valorRegular: {semana: 110, fimDeSemana: 90},

@@ -1,7 +1,5 @@
-//import {hoteis} from "./model/hoteis.js";
-// 1 - OBJETO HOTEL
 
-let testparams = "Fidelidade: 25Mar2020(wed), 26Mar2020(thur), 27Mar2020(fri)";
+let testparams = "Fidelidade: 26Mar2020(thur), 27Mar2020(fri), 28Mar2020(sat)";
 
 let hoteisAtuais = [{
     name: "Parque das flores",
@@ -20,26 +18,30 @@ let hoteisAtuais = [{
     valorFidelidade: {semana: 100, fimDeSemana: 40}
     }];
 
-// 2 - DEFININDO A FUNÇÃO 
 
-let  hotelMaisBarato = (params, listaHoteis) => {
-  
-    let hoteis = listaHoteis;
-  //  console.log("HOTEIS INICIO DA FUNCAO: "+hoteis)
-      
-// 3- FUNÇÕES AUXILIARES DE VALIDAÇÃO
 
     // VERIFICA SE É FIM DE SEMANA
-    const isFimDeSemana = (date) => {
+   const isFimDeSemana = (date) => {
         d = new Date(date)
       //  console.log("DATA : " + d);
         return d.getDay() === 6 || d.getDay() === 0;
    
     }
+
+    exports.isFimDeSemana = isFimDeSemana;
+
     // VERIFICA SE É CLIENTE FIDELIDADE
-    const isFidelidade = (cliente) => {
+   const isFidelidade = (cliente) => {
         return cliente == "Fidelidade";
     }
+
+    exports.isFidelidade = isFidelidade;
+
+
+
+   exports.hotelMaisBarato = (params, listaHoteis) => {
+  
+    let hoteis = listaHoteis;
 
 // 4 - QUEBRA DA STRING RECEBIDA EM VARIAVEIS DIFERENTES - ATIBUI TIPO DE CLIENTE E TIPOCLIENTE E DATAS A DATASARRAY
 
@@ -55,7 +57,7 @@ let  hotelMaisBarato = (params, listaHoteis) => {
             let diaria = {
 
                 name: hotel.name,
-                valorDiaria: (isFimDeSemana(date)?(isFidelidade(tipoCliente)? hotel.valorFidelidade.fimDeSemana : hotel.valorFidelidade.semana) : (isFidelidade(tipoCliente)? hotel.valorFidelidade.fimDeSemana : hotel.valorFidelidade.semana)),       
+                valorDiaria: (isFimDeSemana(date)?(isFidelidade(tipoCliente)? hotel.valorFidelidade.fimDeSemana : hotel.valorRegular.fimDeSemana) : (isFidelidade(tipoCliente)? hotel.valorFidelidade.semana : hotel.valorRegular.semana)),       
                 dataDiaria: date,
             }
 
@@ -71,7 +73,7 @@ let  hotelMaisBarato = (params, listaHoteis) => {
     const parqueSum = diariasArray.filter((diaria) => {return diaria.name == "Parque das flores"}).reduce((total, n)=>{return total += n.valorDiaria;},0);
     const jardimSum = diariasArray.filter((diaria) => {return diaria.name == "Jardim Botânico"}).reduce((total, n)=>{return total += n.valorDiaria;},0);
     const marSum = diariasArray.filter((diaria) => {return diaria.name == "Mar Atlântico"}).reduce((total, n)=>{return total += n.valorDiaria;},0);  
-       
+    
     hoteis.forEach((hotel)=>{
         if (hotel.name == "Parque das flores"){
             hotel.totalDiarias = parqueSum;
@@ -97,12 +99,9 @@ let  hotelMaisBarato = (params, listaHoteis) => {
         }
     }, hoteis[0]);
 
-    console.log(HotelMaisBarato.name)
+
    return HotelMaisBarato.name;
 
 
 }
 
-hotelMaisBarato(testparams, hoteisAtuais);
-
-module.exports = hotelMaisBarato;
