@@ -3,8 +3,8 @@
 const chai = require('chai')
 const expect = chai.expect
 
-describe('A failing test', function () {
-  it('should fail', function () {
+describe('Teste de hotel mais barato', function () {
+  it('retornar o hotel com o menor valor para uma lista de datas', function () {
     expect(true).to.equal(false);
   })
 })
