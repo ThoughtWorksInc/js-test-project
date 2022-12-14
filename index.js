@@ -3,4 +3,4 @@ class Hospedagem {
         this.name = name
     }
 }
-const hospedagem = new Hospedagem('Erick')
+const hospedagem = new Hospedagem('erick')
